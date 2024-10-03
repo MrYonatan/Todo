@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+<!-- your HTML code here -->
+
+<script>
+  window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('focus') === 'status') {
+      document.getElementById('id_status').focus();
+    }
+  }
+</script>
+{% load crispy_forms_tags %}
+{% block content %}
+  <h1>Update Task</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class = "btn btn-dark" type="submit">Update</button>
+  </form>
+{% endblock %}

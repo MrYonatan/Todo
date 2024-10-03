@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Todo Item Details</h1>
+  <br>
+  <table class="table table-striped">
+    <tbody>
+      <tr>
+        <th>Todo Item Name:</th>
+        <td>{{ todo_item.name }}</td>
+      </tr>
+      <tr>
+        <th>Status:</th>
+        <td>{{ todo_item.status }}</td>
+      </tr>
+      <tr>
+        <th>Description:</th>
+        <td>{{ todo_item.description }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+{% endblock %}

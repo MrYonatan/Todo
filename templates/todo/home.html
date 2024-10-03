@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Todo List Groups</h1>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Group Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for todo_list in todo_lists %}
+        <tr>
+          <td><a href="{% url 'todo_items' todo_list.id %}" style="color: #333; text-decoration: none; cursor: pointer; padding: 5px;">{{ todo_list.name }}</a></td>
+          <td>
+            <a href="{% url 'update_todo_list' todo_list.id %} " class="btn btn-dark">Update</a>
+            <a href="{% url 'delete_todo_list' todo_list.id %}" class="btn btn-dark">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <a href="{% url 'create_todo_list' %}" class="btn btn-dark">Create New Group</a>
+{% endblock %}
+

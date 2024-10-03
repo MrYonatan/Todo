@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Todo Tasks for {{ todo_list.name }} </h1>
+  <p>
+    {% if todo_list.description %}
+      <p>Description: {{ todo_list.description }}</p>
+    {% endif %}
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      {% for todo_item in todo_items %}
+        <tr>
+          <td><a href="{% url 'todo_item_detail' todo_item.id %}" style="color: #333; text-decoration: none; cursor: pointer; padding: 5px;" class="text-decoration-none">{{ todo_item.name }}</a></td>
+          <td>
+            <a href="{%url 'update_todo_item' todo_item.id %}?focus=status" style="color: #333; text-decoration: none; cursor: pointer; padding: 5px;" class="text-decoration-none"> 
+              <i class="fas fa-pen" style="color: #333; cursor: pointer;"></i>{{ todo_item.status }}
+            </a>
+          </td>
+          <td>
+            <a href="{% url 'update_todo_item' todo_item.id %}" class="btn btn-dark">Update</a>
+            <a href="{% url 'delete_todo_item' todo_item.id %}" class="btn btn-dark">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <a href="{% url 'create_todo_item' todo_list.id %}" class="btn btn-dark">+</a>
+{% endblock %}
