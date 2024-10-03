@@ -27,7 +27,7 @@ class TodoItemsView(LoginRequiredMixin, DetailView):
         return context
 
 
-@login_required
+@login_required(login_url='/users/login')
 def home_view(request):
     todo_lists = TodoList.objects.filter(created_by=request.user)
     return render(request, 'todo/home.html', {'todo_lists': todo_lists})
